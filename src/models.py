@@ -9,19 +9,17 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = 'user'
- 
-    id = Column (Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     username = Column(String(250), nullable=False)
     first_name = Column(String(250), nullable=False)
-    last__name = Column(String(250), nullable=False)
-    password = Column(String(259), nullable=False)
+    last_name = Column(String(250), nullable=False)
     phone = Column(String(250))
+    email = Column(String(250))
     gender = Column(String(250))
 
     def __repr__(self):
         return '<User %r>' % self.username
     
-
 
 
 class Post(Base):
@@ -33,6 +31,7 @@ class Post(Base):
     comments = Column(String(250))
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+
 
     def __repr__(self):
         return '<Post %r>' % self.title
